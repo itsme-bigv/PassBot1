@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schemas.botframework.com/schemas/component/v1.0/component.schema",
+  "$role": "implements(Microsoft.IDialog)",
+  "title": "CreateModel",
+  "description": "This will return an object of Type PassProcessModel",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "wishToCreate": {
+      "$ref": "schema:#/definitions/booleanExpression",
+      "description": "Value to store decision as boolean",
+      "title": "Do you want to create a new model?"
+    },
+    "createdModel": {
+      "$ref": "schema:#/definitions/equalsExpression",
+      "description": "Value to store the created Model as an object",
+      "title": "Model"
+    }
+  }
+}
