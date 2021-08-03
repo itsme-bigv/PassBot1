@@ -37,6 +37,9 @@ namespace CreateModelDialog
 
                 //Set default layer
                 Model.addLayer("defaultLayer");
+
+                ModelManagement management = ModelManagement.getInstance();
+                management.Model = this.Model;
             }
 
             //Create Model and save it to state
