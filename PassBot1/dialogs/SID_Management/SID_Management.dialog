@@ -1,0 +1,24 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "fCt1lV",
+    "name": "SID_Management",
+    "comment": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "nSybFm"
+      },
+      "actions": []
+    }
+  ],
+  "generator": "SID_Management.lg",
+  "recognizer": "SID_Management.lu.qna",
+  "id": "SID_Management"
+}

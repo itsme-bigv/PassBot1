@@ -2,6 +2,7 @@
 using Microsoft.Bot.Builder.Dialogs.Declarative;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using CreateModelDialog.Actions;
 
 namespace CreateModelDialog
 {
@@ -12,6 +13,7 @@ namespace CreateModelDialog
             // Anything that could be done in Startup.ConfigureServices can be done here.
             // In this case, the CreateModelDialog needs to be added as a new DeclarativeType.
             services.AddSingleton<DeclarativeType>(sp => new DeclarativeType<CreateModelDialog>(CreateModelDialog.Kind));
+           // services.AddSingleton<DeclarativeType>(sp => new DeclarativeType<CreateFullySpecifiedSubject>(CreateFullySpecifiedSubject.Kind));
         }
     }
 }

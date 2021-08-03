@@ -4,7 +4,7 @@
 		<OutputType>Library</OutputType>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<PackageId>Microsoft.Bot.Components.Samples.MultiplyDialog</PackageId>
-		<Description>This library implements .NET support for the MultiplyDialog custom action sample BotComponent.</Description>
+		<Description>This library implements .NET support for the custom actions for PASS Process Models</Description>
 		<Summary>This library implements .NET support for the MultiplyDialog custom action sample BotComponent.</Summary>
 		<ContentTargetFolders>content</ContentTargetFolders>
 		<!--<PackageTags>msbot-component;msbot-action;msbot-trigger</PackageTags>-->

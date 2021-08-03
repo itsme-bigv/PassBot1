@@ -1,0 +1,24 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "TYEs5Q",
+    "name": "SBD_Management",
+    "comment": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "PlIvA6"
+      },
+      "actions": []
+    }
+  ],
+  "generator": "SBD_Management.lg",
+  "recognizer": "SBD_Management.lu.qna",
+  "id": "SBD_Management"
+}

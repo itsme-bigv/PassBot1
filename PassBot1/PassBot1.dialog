@@ -40,6 +40,45 @@
                 }
               ]
             }
+          ],
+          "value": "dialog.foreach.value"
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "BqDkmm"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "prompt": "${TextInput_Prompt_BqDkmm()}",
+          "property": "user.choice"
+        },
+        {
+          "$kind": "Microsoft.SwitchCondition",
+          "$designer": {
+            "id": "FOwpOX"
+          },
+          "condition": "user.choice",
+          "cases": [
+            {
+              "value": "Create a new model from scratch",
+              "actions": [
+                {
+                  "$kind": "Microsoft.BeginDialog",
+                  "$designer": {
+                    "id": "BTMZvD"
+                  },
+                  "activityProcessed": true,
+                  "dialog": "NewModel",
+                  "resultProperty": "dialog.model"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -58,55 +97,12 @@
           "activity": "${SendActivity_DidNotUnderstand()}"
         }
       ]
-    },
-    {
-      "$kind": "Microsoft.OnIntent",
-      "$designer": {
-        "id": "ueaFEy",
-        "name": "CreateModel"
-      },
-      "intent": "CreateModel",
-      "actions": [
-        {
-          "$kind": "Microsoft.ConfirmInput",
-          "$designer": {
-            "id": "AfjwGs"
-          },
-          "defaultLocale": "en-us",
-          "disabled": false,
-          "maxTurnCount": 3,
-          "alwaysPrompt": false,
-          "allowInterruptions": false,
-          "unrecognizedPrompt": "",
-          "invalidPrompt": "",
-          "choiceOptions": {
-            "includeNumbers": true,
-            "inlineOrMore": ", or ",
-            "inlineOr": " or ",
-            "inlineSeparator": ", "
-          },
-          "prompt": "${ConfirmInput_Prompt_AfjwGs()}",
-          "property": "user.wishToCreate"
-        },
-        {
-          "$kind": "CreateModelDialog",
-          "$designer": {
-            "id": "J5iEt3"
-          },
-          "wishToCreate": "=user.wishToCreate"
-        }
-      ]
     }
   ],
   "generator": "PassBot1.lg",
   "id": "PassBot1",
   "recognizer": {
     "$kind": "Microsoft.RegexRecognizer",
-    "intents": [
-      {
-        "intent": "CreateModel",
-        "pattern": "I want to create a new model"
-      }
-    ]
+    "intents": []
   }
 }

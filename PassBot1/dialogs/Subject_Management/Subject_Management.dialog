@@ -1,0 +1,24 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "f4Jb3u",
+    "name": "Subject_Management",
+    "comment": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "VCP2JF"
+      },
+      "actions": []
+    }
+  ],
+  "generator": "Subject_Management.lg",
+  "recognizer": "Subject_Management.lu.qna",
+  "id": "Subject_Management"
+}

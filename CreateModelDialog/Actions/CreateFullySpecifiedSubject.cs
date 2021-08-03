@@ -7,13 +7,12 @@ using Microsoft.Bot.Builder.Dialogs;
 using Newtonsoft.Json;
 using alps.net_api;
 
-
-namespace CreateModelDialog
+namespace CreateModelDialog.Actions
 {
-    public class CreateModelDialog : Dialog
+    public class CreateFullySpecifiedSubject : Dialog
     {
         [JsonConstructor]
-        public CreateModelDialog([CallerFilePath] string sourceFilePath = "", [CallerLineNumber] int sourceLineNumber = 0)
+        public CreateFullySpecifiedSubject([CallerFilePath] string sourceFilePath = "", [CallerLineNumber] int sourceLineNumber = 0)
             : base()
         {
             // enable instances of this command as debug break point
@@ -21,7 +20,7 @@ namespace CreateModelDialog
         }
 
         [JsonProperty("$kind")]
-        public const string Kind = "CreateModelDialog";
+        public const string Kind = "CreateFullySpecifiedSubject";
 
         [JsonProperty("wishToCreate")]
         public BoolExpression CreateModel { get; set; }

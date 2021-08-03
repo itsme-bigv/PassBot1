@@ -1,0 +1,57 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "OuQkad",
+    "name": "NewModel",
+    "comment": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "xgvx7s"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.ConfirmInput",
+          "$designer": {
+            "id": "Ikl0NO"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "choiceOptions": {
+            "includeNumbers": true,
+            "inlineOrMore": ", or ",
+            "inlineOr": " or ",
+            "inlineSeparator": ", "
+          },
+          "prompt": "${ConfirmInput_Prompt_Ikl0NO()}",
+          "property": "user.wishToCreate",
+          "style": "suggestedAction"
+        },
+        {
+          "$kind": "CreateModelDialog",
+          "$designer": {
+            "id": "zTZqjF"
+          },
+          "wishToCreate": "=user.wishToCreate"
+        }
+      ]
+    }
+  ],
+  "generator": "NewModel.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": []
+  },
+  "id": "NewModel"
+}

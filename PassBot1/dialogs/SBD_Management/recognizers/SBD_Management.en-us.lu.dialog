@@ -1,0 +1,8 @@
+{
+  "$kind": "Microsoft.LuisRecognizer",
+  "id": "LUIS_SBD_Management",
+  "applicationId": "=settings.luis.SBD_Management_en_us_lu.appId",
+  "version": "=settings.luis.SBD_Management_en_us_lu.version",
+  "endpoint": "=settings.luis.endpoint",
+  "endpointKey": "=settings.luis.endpointKey"
+}

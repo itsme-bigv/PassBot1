@@ -1,0 +1,6 @@
+[import](common.lg)
+
+# ConfirmInput_Prompt_Ikl0NO()
+[Activity
+    Text = - Do you want to create a new Process Model?
+]
