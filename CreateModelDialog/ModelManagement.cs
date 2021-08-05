@@ -8,7 +8,7 @@ namespace CreateModelDialog
     class ModelManagement
     {
         private static ModelManagement management;
-        public IPassProcessModell Model { get; set; }
+        public PassProcessModel Model { get; set; }
 
         private ModelManagement()
         {

@@ -15,10 +15,129 @@
         "description": "",
         "id": "VCP2JF"
       },
-      "actions": []
+      "actions": [
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "YBiXq0"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_YBiXq0()}",
+          "property": "user.submod"
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "I2ax45"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "prompt": "${TextInput_Prompt_I2ax45()}",
+          "property": "user.subjectName"
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "VTP0kj"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_VTP0kj()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "user.subjectType"
+        },
+        {
+          "$kind": "CreateSubject",
+          "$designer": {
+            "id": "FQAd8O"
+          },
+          "subjectName": "user.subjectName",
+          "subjectType": "user.subjectType"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "iLDWuO",
+        "name": "Add"
+      },
+      "intent": "Create",
+      "actions": [
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "w4lDqj"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "prompt": "${TextInput_Prompt_w4lDqj()}",
+          "property": "user.subjectName"
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "q7pqMm"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_q7pqMm()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "user.subjectType"
+        },
+        {
+          "$kind": "CreateSubject",
+          "$designer": {
+            "id": "vZynVI"
+          },
+          "subjectName": "user.subjectName",
+          "subjectType": "user.subjectType"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "8d2lBI",
+        "name": "Modify"
+      },
+      "intent": "Modify"
     }
   ],
   "generator": "Subject_Management.lg",
-  "recognizer": "Subject_Management.lu.qna",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": [
+      {
+        "intent": "Modify",
+        "pattern": "Modify"
+      },
+      {
+        "intent": "Create",
+        "pattern": "Add"
+      }
+    ]
+  },
   "id": "Subject_Management"
 }

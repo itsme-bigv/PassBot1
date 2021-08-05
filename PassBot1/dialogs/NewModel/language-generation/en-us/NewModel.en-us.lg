@@ -4,3 +4,18 @@
 [Activity
     Text = - Do you want to create a new Process Model?
 ]
+
+# SendActivity_eq8Fu0()
+[Activity
+    Text = ${SendActivity_eq8Fu0_text()}
+]
+
+# SendActivity_eq8Fu0_text()
+- Your model has been created
+# TextInput_Prompt_snCkMd()
+[Activity
+    Text = ${TextInput_Prompt_snCkMd_text()}
+]
+
+# TextInput_Prompt_snCkMd_text()
+- What do you want to do next?

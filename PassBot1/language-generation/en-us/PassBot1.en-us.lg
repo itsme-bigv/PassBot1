@@ -19,3 +19,35 @@
     SuggestedActions = Create a new model from scratch | Modifiy existing Model | Get Information on an existing Model | Get general Information on Subject-Oriented Process Modelling 
 ]
 
+
+# TextInput_Prompt_f3EvYd_text()
+- What do you want to modify?
+# TextInput_Prompt_f3EvYd()
+[Activity
+    Text = ${TextInput_Prompt_f3EvYd_text()}
+    SuggestedActions = A Subject | SBD | SID
+]
+
+# TextInput_Prompt_4CgGiB()
+[Activity
+    Text = ${TextInput_Prompt_4CgGiB_text()}
+    SuggestedActions = Create a new model from scratch | Modifiy existing Model | Get Information on an existing Model | Get general Information on Subject-Oriented Process Modelling
+]
+
+# TextInput_Prompt_ilovNo_text()
+- What do you want to modify?
+# TextInput_Prompt_ilovNo()
+[Activity
+    Text = ${TextInput_Prompt_ilovNo_text()}
+    SuggestedActions = A Subject | SBD | SID
+]
+
+# TextInput_Prompt_4CgGiB_text()
+- What now?
+# SendActivity_4I4ICJ()
+[Activity
+    Text = ${SendActivity_4I4ICJ_text()}
+]
+
+# SendActivity_4I4ICJ_text()
+- default path

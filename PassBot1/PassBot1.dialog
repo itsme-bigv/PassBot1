@@ -61,7 +61,7 @@
         {
           "$kind": "Microsoft.SwitchCondition",
           "$designer": {
-            "id": "FOwpOX"
+            "id": "WHuLd9"
           },
           "condition": "user.choice",
           "cases": [
@@ -71,15 +71,90 @@
                 {
                   "$kind": "Microsoft.BeginDialog",
                   "$designer": {
-                    "id": "BTMZvD"
+                    "id": "URDHDJ"
                   },
                   "activityProcessed": true,
                   "dialog": "NewModel",
                   "resultProperty": "dialog.model"
                 }
               ]
+            },
+            {
+              "value": "Modify existing Model",
+              "actions": [
+                {
+                  "$kind": "Microsoft.TextInput",
+                  "$designer": {
+                    "id": "f3EvYd"
+                  },
+                  "disabled": false,
+                  "maxTurnCount": 3,
+                  "alwaysPrompt": false,
+                  "allowInterruptions": false,
+                  "unrecognizedPrompt": "",
+                  "invalidPrompt": "",
+                  "defaultValueResponse": "",
+                  "prompt": "${TextInput_Prompt_f3EvYd()}",
+                  "property": "user.modification"
+                },
+                {
+                  "$kind": "Microsoft.SwitchCondition",
+                  "$designer": {
+                    "id": "moVkbz"
+                  },
+                  "condition": "user.modification",
+                  "cases": [
+                    {
+                      "value": "A Subject",
+                      "actions": [
+                        {
+                          "$kind": "Microsoft.BeginDialog",
+                          "$designer": {
+                            "id": "LsDE2i"
+                          },
+                          "activityProcessed": true,
+                          "dialog": "Subject_Management"
+                        }
+                      ]
+                    },
+                    {
+                      "value": "SBD",
+                      "actions": [
+                        {
+                          "$kind": "Microsoft.BeginDialog",
+                          "$designer": {
+                            "id": "NafhAs"
+                          },
+                          "activityProcessed": true,
+                          "dialog": "SBD_Management"
+                        }
+                      ]
+                    },
+                    {
+                      "value": "SID",
+                      "actions": [
+                        {
+                          "$kind": "Microsoft.BeginDialog",
+                          "$designer": {
+                            "id": "Dtn2qF"
+                          },
+                          "activityProcessed": true,
+                          "dialog": "SID_Management"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
+        },
+        {
+          "$kind": "Microsoft.DeleteProperty",
+          "$designer": {
+            "id": "7xCQEs"
+          },
+          "property": "user.choice"
         }
       ]
     },
@@ -97,12 +172,150 @@
           "activity": "${SendActivity_DidNotUnderstand()}"
         }
       ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "hKdrSS",
+        "name": "nextSteps"
+      },
+      "intent": "nextSteps",
+      "entities": [],
+      "actions": [
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "4CgGiB"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "prompt": "${TextInput_Prompt_4CgGiB()}",
+          "property": "user.choice"
+        },
+        {
+          "$kind": "Microsoft.SwitchCondition",
+          "$designer": {
+            "id": "q2DdSE"
+          },
+          "condition": "user.choice",
+          "cases": [
+            {
+              "value": "Create a new model from scratch",
+              "actions": [
+                {
+                  "$kind": "Microsoft.BeginDialog",
+                  "$designer": {
+                    "id": "E9lDYB"
+                  },
+                  "activityProcessed": true,
+                  "dialog": "NewModel",
+                  "resultProperty": "dialog.model"
+                }
+              ]
+            },
+            {
+              "value": "Modifiy existing Model",
+              "actions": [
+                {
+                  "$kind": "Microsoft.TextInput",
+                  "$designer": {
+                    "id": "ilovNo"
+                  },
+                  "disabled": false,
+                  "maxTurnCount": 3,
+                  "alwaysPrompt": false,
+                  "allowInterruptions": false,
+                  "unrecognizedPrompt": "",
+                  "invalidPrompt": "",
+                  "defaultValueResponse": "",
+                  "prompt": "${TextInput_Prompt_ilovNo()}",
+                  "property": "user.modification"
+                },
+                {
+                  "$kind": "Microsoft.SwitchCondition",
+                  "$designer": {
+                    "id": "N7YIv2"
+                  },
+                  "condition": "user.modification",
+                  "cases": [
+                    {
+                      "value": "A Subject",
+                      "actions": [
+                        {
+                          "$kind": "Microsoft.BeginDialog",
+                          "$designer": {
+                            "id": "VghcsL"
+                          },
+                          "activityProcessed": true,
+                          "dialog": "Subject_Management"
+                        }
+                      ]
+                    },
+                    {
+                      "value": "SBD",
+                      "actions": [
+                        {
+                          "$kind": "Microsoft.BeginDialog",
+                          "$designer": {
+                            "id": "QQMhqc"
+                          },
+                          "activityProcessed": true,
+                          "dialog": "SBD_Management"
+                        }
+                      ]
+                    },
+                    {
+                      "value": "SID",
+                      "actions": [
+                        {
+                          "$kind": "Microsoft.BeginDialog",
+                          "$designer": {
+                            "id": "1rItKP"
+                          },
+                          "activityProcessed": true,
+                          "dialog": "SID_Management"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "default": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "4I4ICJ"
+              },
+              "activity": "${SendActivity_4I4ICJ()}"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.DeleteProperty",
+          "$designer": {
+            "id": "iQipHm"
+          },
+          "property": "user.choice"
+        }
+      ]
     }
   ],
   "generator": "PassBot1.lg",
   "id": "PassBot1",
   "recognizer": {
     "$kind": "Microsoft.RegexRecognizer",
-    "intents": []
+    "intents": [
+      {
+        "intent": "nextSteps",
+        "pattern": "nextSteps"
+      }
+    ]
   }
 }

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schemas.botframework.com/schemas/component/v1.0/component.schema",
+  "$role": "implements(Microsoft.IDialog)",
+  "title": "CreateSubject",
+  "description": "This will return a Subject of given type",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "subjectName": {
+      "$ref": "schema:#/definitions/stringExpression",
+      "description": "Value to store decision as string",
+      "title": "What's the name of your Subject?'"
+    },
+    "createdSubject": {
+      "$ref": "schema:#/definitions/equalsExpression",
+      "description": "Value to store the created Subject as an object",
+      "title": "Subject"
+    },
+    "subjectType": {
+      "$ref": "schema:#/definitions/stringExpression",
+      "description": "Value to store the Subject`s type",
+      "title": "What type of subject do you want to add?"
+    }
+  }
+}
