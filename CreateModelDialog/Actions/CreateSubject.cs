@@ -9,10 +9,10 @@ using alps.net_api;
 
 namespace CreateModelDialog.Actions
 {
-    public class CreateSubject : Dialog
+    public class CreateMessage : Dialog
     {
         [JsonConstructor]
-        public CreateSubject([CallerFilePath] string sourceFilePath = "", [CallerLineNumber] int sourceLineNumber = 0)
+        public CreateMessage([CallerFilePath] string sourceFilePath = "", [CallerLineNumber] int sourceLineNumber = 0)
             : base()
         {
             // enable instances of this command as debug break point
@@ -41,16 +41,16 @@ namespace CreateModelDialog.Actions
 
             if (subjecttype.ToString() == "Interface Subject")
             {
-                this.Subject = management.Model.getModelLayer(0).addInterfaceSubject(subjectname.ToString());
+                this.Subject = management.Model.getModelLayer(0).addInterfaceSubject(subjectname.ToString() + "#");
             }
             else if (subjecttype.ToString() == "Fully Specified Subject")
             {
-                this.Subject = management.Model.getModelLayer(0).addFullySpecifiedSubject(subjectname.ToString());
+                this.Subject = management.Model.getModelLayer(0).addFullySpecifiedSubject(subjectname.ToString() + "#");
 
             }
             else if (subjecttype.ToString() == "Multi Subject")
             {
-                this.Subject = management.Model.getModelLayer(0).addMultiSubject(subjectname.ToString());
+                this.Subject = management.Model.getModelLayer(0).addMultiSubject(subjectname.ToString() + "#");
             }
 
             OwlGraph graph = new OwlGraph();
