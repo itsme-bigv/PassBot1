@@ -1,1 +1,23 @@
 [import](common.lg)
+
+# TextInput_Prompt_FZ7QSw_text()
+- What's the name of the subject?
+# TextInput_Prompt_FZ7QSw()
+[Activity
+    Text = ${TextInput_Prompt_FZ7QSw_text()}
+]
+
+# TextInput_Prompt_hdqOyR_text()
+- What type of subject is it?
+# TextInput_Prompt_hdqOyR()
+[Activity
+    Text = ${TextInput_Prompt_hdqOyR_text()}
+    SuggestedActions = Interface Subject | Multi Subject | Fully Specified Subject
+]
+
+# SendActivity_7OiuNs_text()
+- ${user.SubjectName} has been added to the Model
+# SendActivity_7OiuNs()
+[Activity
+    Text = ${SendActivity_7OiuNs_text()}
+]

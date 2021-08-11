@@ -5,10 +5,16 @@
   "description": "These are all of the kinds that can be created by the loader.",
   "oneOf": [
     {
+      "$ref": "#/definitions/CreateMessageExchange"
+    },
+    {
       "$ref": "#/definitions/CreateModelDialog"
     },
     {
       "$ref": "#/definitions/CreateSubject"
+    },
+    {
+      "$ref": "#/definitions/ExportModel"
     },
     {
       "$ref": "#/definitions/Microsoft.ActivityTemplate"
@@ -429,6 +435,56 @@
         }
       ]
     },
+    "CreateMessageExchange": {
+      "$role": "implements(Microsoft.IDialog)",
+      "title": "CreateMessageExchange",
+      "description": "This will return a message exchange between two subjects",
+      "type": "object",
+      "required": [
+        "$kind"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^\\$": {
+          "title": "Tooling property",
+          "description": "Open ended property for tooling."
+        }
+      },
+      "properties": {
+        "sendingSubject": {
+          "$ref": "#/definitions/stringExpression",
+          "description": "What's the name of the sending subject",
+          "title": "Sender"
+        },
+        "receivingSubject": {
+          "$ref": "#/definitions/stringExpression",
+          "description": "What's the name of the receiving subject",
+          "title": "Receiver"
+        },
+        "messageTitle": {
+          "$ref": "#/definitions/stringExpression",
+          "description": "What message is sent?",
+          "title": "Message content"
+        },
+        "message": {
+          "$ref": "#/definitions/equalsExpression",
+          "description": "Value to store the message in",
+          "title": ""
+        },
+        "$kind": {
+          "title": "Kind of dialog object",
+          "description": "Defines the valid properties for the component you are configuring (from a dialog .schema file)",
+          "type": "string",
+          "pattern": "^[a-zA-Z][a-zA-Z0-9.]*$",
+          "const": "CreateMessageExchange"
+        },
+        "$designer": {
+          "title": "Designer information",
+          "type": "object",
+          "description": "Extra information for the Bot Framework Composer."
+        }
+      }
+    },
     "CreateModelDialog": {
       "$role": "implements(Microsoft.IDialog)",
       "title": "CreateModel",
@@ -472,7 +528,7 @@
     "CreateSubject": {
       "$role": "implements(Microsoft.IDialog)",
       "title": "CreateSubject",
-      "description": "This will return an object of Type FullySpecifiedSubject",
+      "description": "This will return a Subject of given type",
       "type": "object",
       "required": [
         "$kind"
@@ -523,6 +579,41 @@
       "examples": [
         "=user.name"
       ]
+    },
+    "ExportModel": {
+      "$role": "implements(Microsoft.IDialog)",
+      "title": "ExportModel",
+      "description": "This will create an .OWL file with given name",
+      "type": "object",
+      "required": [
+        "$kind"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^\\$": {
+          "title": "Tooling property",
+          "description": "Open ended property for tooling."
+        }
+      },
+      "properties": {
+        "FileName": {
+          "$ref": "#/definitions/stringExpression",
+          "description": "Name of the .OWL file",
+          "title": "Give the file a name"
+        },
+        "$kind": {
+          "title": "Kind of dialog object",
+          "description": "Defines the valid properties for the component you are configuring (from a dialog .schema file)",
+          "type": "string",
+          "pattern": "^[a-zA-Z][a-zA-Z0-9.]*$",
+          "const": "ExportModel"
+        },
+        "$designer": {
+          "title": "Designer information",
+          "type": "object",
+          "description": "Extra information for the Bot Framework Composer."
+        }
+      }
     },
     "expression": {
       "$role": "expression",
@@ -4009,10 +4100,16 @@
       "$role": "interface",
       "oneOf": [
         {
+          "$ref": "#/definitions/CreateMessageExchange"
+        },
+        {
           "$ref": "#/definitions/CreateModelDialog"
         },
         {
           "$ref": "#/definitions/CreateSubject"
+        },
+        {
+          "$ref": "#/definitions/ExportModel"
         },
         {
           "$ref": "#/definitions/Microsoft.AdaptiveDialog"

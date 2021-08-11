@@ -15,7 +15,9 @@
 		<Content Include="**/*.schema" />
 		<Content Include="**/*.uischema" />
 		<None Include="exported/**/*.*" Pack="true" PackagePath="exported" />
+		<Content Remove="Schemas\CreateMessageExchange.schema" />
 		<Content Remove="Schemas\CreateSubject.schema" />
+		<Content Remove="Schemas\ExportModel.schema" />
 		<None Include="README.md" Condition="Exists('README.md')" Pack="true" PackagePath="" />
 	</ItemGroup>
 

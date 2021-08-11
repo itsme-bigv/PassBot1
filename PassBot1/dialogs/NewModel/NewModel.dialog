@@ -53,19 +53,6 @@
           "activity": "${SendActivity_eq8Fu0()}"
         },
         {
-          "$kind": "Microsoft.TextInput",
-          "$designer": {
-            "id": "snCkMd"
-          },
-          "disabled": false,
-          "maxTurnCount": 3,
-          "alwaysPrompt": false,
-          "allowInterruptions": false,
-          "prompt": "${TextInput_Prompt_snCkMd()}",
-          "unrecognizedPrompt": "",
-          "invalidPrompt": ""
-        },
-        {
           "$kind": "Microsoft.BeginDialog",
           "$designer": {
             "id": "hYXSwc"

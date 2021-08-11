@@ -7,33 +7,4 @@
 ]
 
 # TextInput_Prompt_YBiXq0_text()
-- Do you wish to manage a subject or add a new one to your model?
-# TextInput_Prompt_w4lDqj()
-[Activity
-    Text = ${TextInput_Prompt_w4lDqj_text()}
-]
-
-# TextInput_Prompt_w4lDqj_text()
-- What's the name of the subject?
-# TextInput_Prompt_q7pqMm()
-[Activity
-    Text = ${TextInput_Prompt_q7pqMm_text()}
-    SuggestedActions = Interface Subject | Multi Subject | Fully Specified Subject
-]
-
-# TextInput_Prompt_q7pqMm_text()
-- What type of subject is it?
-# TextInput_Prompt_I2ax45_text()
-- What's the name of the subject?
-# TextInput_Prompt_I2ax45()
-[Activity
-    Text = ${TextInput_Prompt_I2ax45_text()}
-]
-
-# TextInput_Prompt_VTP0kj_text()
-- What type of subject is it?
-# TextInput_Prompt_VTP0kj()
-[Activity
-    Text = ${TextInput_Prompt_VTP0kj_text()}
-    SuggestedActions = Interface Subject | Multi Subject | Fully Specified Subject
-]
+- Do you wish to manage a subject or add a message exchange?

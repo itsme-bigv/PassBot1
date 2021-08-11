@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schemas.botframework.com/schemas/component/v1.0/component.schema",
+  "$role": "implements(Microsoft.IDialog)",
+  "title": "CreateMessageExchange",
+  "description": "This will return a message exchange between two subjects",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "sendingSubject": {
+      "$ref": "schema:#/definitions/stringExpression",
+      "description": "What's the name of the sending subject",
+      "title": "Sender"
+    },
+    "receivingSubject": {
+      "$ref": "schema:#/definitions/stringExpression",
+      "description": "What's the name of the receiving subject",
+      "title": "Receiver"
+    },
+    "messageTitle": {
+      "$ref": "schema:#/definitions/stringExpression",
+      "description": "What message is sent?",
+      "title": "Message content"
+    },
+    "message": {
+      "$ref": "schema:#/definitions/equalsExpression",
+      "description": "Value to store the message in",
+      "title": ""
+    }
+  }
+}

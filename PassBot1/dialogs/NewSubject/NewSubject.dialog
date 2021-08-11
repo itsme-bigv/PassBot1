@@ -15,7 +15,72 @@
         "description": "",
         "id": "wtviOl"
       },
-      "actions": []
+      "actions": [
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "FZ7QSw"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "prompt": "${TextInput_Prompt_FZ7QSw()}",
+          "property": "user.subjectName"
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "hdqOyR"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_hdqOyR()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "user.subjectType"
+        },
+        {
+          "$kind": "CreateSubject",
+          "$designer": {
+            "id": "9WWQQe"
+          },
+          "subjectName": "user.subjectName",
+          "subjectType": "user.subjectType"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "7OiuNs"
+          },
+          "activity": "${SendActivity_7OiuNs()}"
+        },
+        {
+          "$kind": "Microsoft.DeleteProperties",
+          "$designer": {
+            "id": "Atjl1X"
+          },
+          "properties": [
+            "user.subjectType",
+            "user.subjectName",
+            "user.submod"
+          ]
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "o3xTmS"
+          },
+          "activityProcessed": true,
+          "dialog": "PassBot1"
+        }
+      ]
     }
   ],
   "generator": "NewSubject.lg",

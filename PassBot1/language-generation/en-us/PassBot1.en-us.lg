@@ -6,7 +6,7 @@
 ]
 
 # SendActivity_Greeting_text()
-- Welcome to PassBot1, your go-to digital assistant for creating PASS Process Models. Click on one of the cards to get started!
+- Hi, my name is Albert, your go-to digital assistant for creating PASS Process Models. Click on one of the cards to get started!
 # SendActivity_DidNotUnderstand()
 [Activity
     Text = ${SendActivity_DidNotUnderstand_text()}
@@ -31,7 +31,7 @@
 # TextInput_Prompt_4CgGiB()
 [Activity
     Text = ${TextInput_Prompt_4CgGiB_text()}
-    SuggestedActions = Create a new model from scratch | Modifiy existing Model | Get Information on an existing Model | Get general Information on Subject-Oriented Process Modelling
+    SuggestedActions = Create a new model from scratch | Modifiy existing Model | Get Information on an existing Model | Get general Information on Subject-Oriented Process Modelling | Export Model
 ]
 
 # TextInput_Prompt_ilovNo_text()
@@ -51,3 +51,25 @@
 
 # SendActivity_4I4ICJ_text()
 - default path
+# TextInput_Prompt_E99CZj()
+[Activity
+    Text = ${TextInput_Prompt_E99CZj_text()}
+]
+
+# TextInput_Prompt_E99CZj_text()
+- Enter a name for the exported process model
+# TextInput_Prompt_UgSxos()
+[Activity
+    Text = ${TextInput_Prompt_UgSxos_text()}
+    SuggestedActions = Add | Modify
+]
+
+# TextInput_Prompt_UgSxos_text()
+- do you wish to add a new subject or modify an existing one?
+# SendActivity_N8fnXH()
+[Activity
+    Text = ${SendActivity_N8fnXH_text()}
+]
+
+# SendActivity_N8fnXH_text()
+- your model has been exported to ${user.fileName}.OWL in your bot project folder 

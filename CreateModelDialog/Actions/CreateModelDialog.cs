@@ -29,6 +29,7 @@ namespace CreateModelDialog
         [JsonProperty("createdModel")]
         public PassProcessModel Model { get; set; }
 
+
         public override Task<DialogTurnResult> BeginDialogAsync(DialogContext dc, object options = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (CreateModel.GetValue(dc.State))

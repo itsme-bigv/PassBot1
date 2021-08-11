@@ -9,10 +9,10 @@ using alps.net_api;
 
 namespace CreateModelDialog.Actions
 {
-    public class CreateMessage : Dialog
+    public class CreateSubject : Dialog
     {
         [JsonConstructor]
-        public CreateMessage([CallerFilePath] string sourceFilePath = "", [CallerLineNumber] int sourceLineNumber = 0)
+        public CreateSubject([CallerFilePath] string sourceFilePath = "", [CallerLineNumber] int sourceLineNumber = 0)
             : base()
         {
             // enable instances of this command as debug break point
@@ -53,8 +53,6 @@ namespace CreateModelDialog.Actions
                 this.Subject = management.Model.getModelLayer(0).addMultiSubject(subjectname.ToString() + "#");
             }
 
-            OwlGraph graph = new OwlGraph();
-            graph.ExportModel(management.Model, "test12345678");
                 //Create Subject and save it to state
                 return dc.EndDialogAsync(result: Subject, cancellationToken: cancellationToken);
         }

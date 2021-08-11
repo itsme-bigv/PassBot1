@@ -2,7 +2,7 @@
 
 # ConfirmInput_Prompt_Ikl0NO()
 [Activity
-    Text = - Do you want to create a new Process Model?
+    Text = ${ConfirmInput_Prompt_Ikl0NO_text()}
 ]
 
 # SendActivity_eq8Fu0()
@@ -11,11 +11,6 @@
 ]
 
 # SendActivity_eq8Fu0_text()
-- Your model has been created
-# TextInput_Prompt_snCkMd()
-[Activity
-    Text = ${TextInput_Prompt_snCkMd_text()}
-]
-
-# TextInput_Prompt_snCkMd_text()
-- What do you want to do next?
+- Your model has been created. Enter "nextSteps" to proceed.
+# ConfirmInput_Prompt_Ikl0NO_text()
+- Do you want to create a new Process Model?

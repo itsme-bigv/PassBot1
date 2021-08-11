@@ -1,7 +1,7 @@
 {
   "$kind": "Microsoft.AdaptiveDialog",
   "$designer": {
-    "name": "PassBot1",
+    "name": "Albert",
     "description": "",
     "id": "A79tBe"
   },
@@ -247,12 +247,54 @@
                       "value": "A Subject",
                       "actions": [
                         {
-                          "$kind": "Microsoft.BeginDialog",
+                          "$kind": "Microsoft.TextInput",
                           "$designer": {
-                            "id": "VghcsL"
+                            "id": "UgSxos"
                           },
-                          "activityProcessed": true,
-                          "dialog": "Subject_Management"
+                          "disabled": false,
+                          "maxTurnCount": 3,
+                          "alwaysPrompt": false,
+                          "allowInterruptions": false,
+                          "prompt": "${TextInput_Prompt_UgSxos()}",
+                          "unrecognizedPrompt": "",
+                          "invalidPrompt": "",
+                          "defaultValueResponse": "",
+                          "property": "user.subchoice"
+                        },
+                        {
+                          "$kind": "Microsoft.SwitchCondition",
+                          "$designer": {
+                            "id": "9HrcBL"
+                          },
+                          "condition": "user.subchoice",
+                          "cases": [
+                            {
+                              "value": "Add",
+                              "actions": [
+                                {
+                                  "$kind": "Microsoft.BeginDialog",
+                                  "$designer": {
+                                    "id": "jLP4Xa"
+                                  },
+                                  "activityProcessed": true,
+                                  "dialog": "NewSubject"
+                                }
+                              ]
+                            },
+                            {
+                              "value": "Modify",
+                              "actions": [
+                                {
+                                  "$kind": "Microsoft.BeginDialog",
+                                  "$designer": {
+                                    "id": "Gamn8O"
+                                  },
+                                  "activityProcessed": true,
+                                  "dialog": "Subject_Management"
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     },
@@ -285,6 +327,40 @@
                   ]
                 }
               ]
+            },
+            {
+              "value": "Export Model",
+              "actions": [
+                {
+                  "$kind": "Microsoft.TextInput",
+                  "$designer": {
+                    "id": "E99CZj"
+                  },
+                  "disabled": false,
+                  "maxTurnCount": 3,
+                  "alwaysPrompt": false,
+                  "allowInterruptions": false,
+                  "unrecognizedPrompt": "",
+                  "invalidPrompt": "",
+                  "defaultValueResponse": "",
+                  "property": "user.fileName",
+                  "prompt": "${TextInput_Prompt_E99CZj()}"
+                },
+                {
+                  "$kind": "ExportModel",
+                  "$designer": {
+                    "id": "vbF1bo"
+                  },
+                  "FileName": "user.fileName"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "N8fnXH"
+                  },
+                  "activity": "${SendActivity_N8fnXH()}"
+                }
+              ]
             }
           ],
           "default": [
@@ -298,11 +374,15 @@
           ]
         },
         {
-          "$kind": "Microsoft.DeleteProperty",
+          "$kind": "Microsoft.DeleteProperties",
           "$designer": {
-            "id": "iQipHm"
+            "id": "ett6pg"
           },
-          "property": "user.choice"
+          "properties": [
+            "user.choice",
+            "user.modification",
+            "user.subchoice"
+          ]
         }
       ]
     }
