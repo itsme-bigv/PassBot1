@@ -1,0 +1,32 @@
+[import](common.lg)
+
+# TextInput_Prompt_keipoR_text()
+- What now?
+# TextInput_Prompt_keipoR()
+[Activity
+    Text = ${TextInput_Prompt_keipoR_text()}
+    SuggestedActions = Modifiy existing model | Get Information on existing model | Get general Information on Subject-Oriented Process Modelling | Export model
+]
+
+# SendActivity_i682Oz_text()
+- default path
+# SendActivity_i682Oz()
+[Activity
+    Text = ${SendActivity_i682Oz_text()}
+]
+
+# TextInput_Prompt_FNdP6T_text()
+- What do you want to do with your model?
+# TextInput_Prompt_FNdP6T()
+[Activity
+    Text = ${TextInput_Prompt_FNdP6T_text()}
+    SuggestedActions = Add a subject | Add messages  | Delete a subject | Add states to a subject
+]
+
+# SendActivity_1NjTCG_text()
+- your model has been exported to ${user.modelName}.OWL in your bot project folder
+# SendActivity_1NjTCG()
+[Activity
+    Text = ${SendActivity_1NjTCG_text()}
+]
+

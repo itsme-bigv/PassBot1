@@ -3,9 +3,10 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using AdaptiveExpressions.Properties;
+using alps.net_api.ALPS.ALPSModelElements;
+using alps.net_api.StandardPASS.InteractionDescribingComponents;
 using Microsoft.Bot.Builder.Dialogs;
 using Newtonsoft.Json;
-using alps.net_api;
 
 namespace CreateModelDialog.Actions
 {
@@ -18,7 +19,7 @@ namespace CreateModelDialog.Actions
             // enable instances of this command as debug break point
             RegisterSourceLocation(sourceFilePath, sourceLineNumber);
         }
-
+        
         [JsonProperty("$kind")]
         public const string Kind = "CreateSubject";
 
@@ -35,25 +36,32 @@ namespace CreateModelDialog.Actions
         {
 
             ModelManagement management = ModelManagement.getInstance();
+            IModelLayer layer = management.Model.getBaseLayer();
             dc.State.TryGetValue("user", out Object user);
             ((System.Collections.Generic.Dictionary<string, object>)user).TryGetValue("subjectType", out Object subjecttype);
             ((System.Collections.Generic.Dictionary<string, object>)user).TryGetValue("subjectName", out Object subjectname);
-
+            
+      
             if (subjecttype.ToString() == "Interface Subject")
             {
-                this.Subject = management.Model.getModelLayer(0).addInterfaceSubject(subjectname.ToString() + "#");
+                 this.Subject = new InterfaceSubject(layer, subjectname.ToString());
             }
             else if (subjecttype.ToString() == "Fully Specified Subject")
-            {
-                this.Subject = management.Model.getModelLayer(0).addFullySpecifiedSubject(subjectname.ToString() + "#");
-
+            { 
+                //FullySpecifiedSubject sub = new FullySpecifiedSubject(layer, subjectname.ToString());
             }
             else if (subjecttype.ToString() == "Multi Subject")
             {
-                this.Subject = management.Model.getModelLayer(0).addMultiSubject(subjectname.ToString() + "#");
+                this.Subject = new MultiSubject(layer, subjectname.ToString());
+                //MultiSubject sub = new MultiSubject(layer, subjectname.ToString());
+
             }
 
-                //Create Subject and save it to state
+            //Create Subject and save it to state
+
+            management.getSubjectCollection();
+            management.subjectCollection.Add((string)subjectname, Subject);
+
                 return dc.EndDialogAsync(result: Subject, cancellationToken: cancellationToken);
         }
     }

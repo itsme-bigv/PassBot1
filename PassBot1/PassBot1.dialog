@@ -41,7 +41,8 @@
               ]
             }
           ],
-          "value": "dialog.foreach.value"
+          "value": "dialog.foreach.value",
+          "index": "dialog.foreach.index"
         },
         {
           "$kind": "Microsoft.TextInput",
@@ -394,7 +395,7 @@
     "intents": [
       {
         "intent": "nextSteps",
-        "pattern": "nextSteps"
+        "pattern": "(?!)|continue|next|proceed"
       }
     ]
   }

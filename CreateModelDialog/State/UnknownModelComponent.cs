@@ -1,0 +1,1 @@
+﻿//to be developed: class, that checks, wether a model component selected by the user exists in the current model 

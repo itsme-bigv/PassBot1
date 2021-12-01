@@ -351,6 +351,15 @@
     },
     {
       "$ref": "#/definitions/Microsoft.UrlEntityRecognizer"
+    },
+    {
+      "$ref": "#/definitions/SBD_Management.dialog"
+    },
+    {
+      "$ref": "#/definitions/SubjectSuggestionComponent"
+    },
+    {
+      "$ref": "#/definitions/SubjectSuggestions"
     }
   ],
   "definitions": {
@@ -501,15 +510,15 @@
         }
       },
       "properties": {
-        "wishToCreate": {
-          "$ref": "#/definitions/booleanExpression",
-          "description": "Value to store decision as boolean",
-          "title": "Do you want to create a new model?"
-        },
         "createdModel": {
           "$ref": "#/definitions/equalsExpression",
           "description": "Value to store the created Model as an object",
           "title": "Model"
+        },
+        "modelName": {
+          "$ref": "#/definitions/stringExpression",
+          "description": "Name, that appears in the model URI",
+          "title": "ModelName"
         },
         "$kind": {
           "title": "Kind of dialog object",
@@ -4254,6 +4263,15 @@
         },
         {
           "$ref": "#/definitions/Microsoft.UpdateActivity"
+        },
+        {
+          "$ref": "#/definitions/SBD_Management.dialog"
+        },
+        {
+          "$ref": "#/definitions/SubjectSuggestionComponent"
+        },
+        {
+          "$ref": "#/definitions/SubjectSuggestions"
         },
         {
           "type": "string",
@@ -9648,6 +9666,39 @@
       "type": "string",
       "pattern": "^((expression)|(interface)|(implements\\([a-zA-Z][a-zA-Z0-9.]*\\))|(extends\\([a-zA-Z][a-zA-Z0-9.]*\\)))$"
     },
+    "SBD_Management.dialog": {
+      "$role": "implements(Microsoft.IDialog)",
+      "title": "SBD_Management",
+      "type": "object",
+      "$result": {
+        "type": "object",
+        "properties": {}
+      },
+      "required": [
+        "$kind"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^\\$": {
+          "title": "Tooling property",
+          "description": "Open ended property for tooling."
+        }
+      },
+      "properties": {
+        "$kind": {
+          "title": "Kind of dialog object",
+          "description": "Defines the valid properties for the component you are configuring (from a dialog .schema file)",
+          "type": "string",
+          "pattern": "^[a-zA-Z][a-zA-Z0-9.]*$",
+          "const": "SBD_Management.dialog"
+        },
+        "$designer": {
+          "title": "Designer information",
+          "type": "object",
+          "description": "Extra information for the Bot Framework Composer."
+        }
+      }
+    },
     "stringExpression": {
       "$role": "expression",
       "title": "String or expression",
@@ -9669,6 +9720,66 @@
           ]
         }
       ]
+    },
+    "SubjectSuggestionComponent": {
+      "$role": "implements(Microsoft.IDialog)",
+      "title": "SubjectSuggestionComponent",
+      "description": "This will return a list of suggested actions with all the subjects currently existing in the model",
+      "type": "object",
+      "required": [
+        "$kind"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^\\$": {
+          "title": "Tooling property",
+          "description": "Open ended property for tooling."
+        }
+      },
+      "properties": {
+        "$kind": {
+          "title": "Kind of dialog object",
+          "description": "Defines the valid properties for the component you are configuring (from a dialog .schema file)",
+          "type": "string",
+          "pattern": "^[a-zA-Z][a-zA-Z0-9.]*$",
+          "const": "SubjectSuggestionComponent"
+        },
+        "$designer": {
+          "title": "Designer information",
+          "type": "object",
+          "description": "Extra information for the Bot Framework Composer."
+        }
+      }
+    },
+    "SubjectSuggestions": {
+      "$role": "implements(Microsoft.IDialog)",
+      "title": "SubjectSuggestions",
+      "description": "This will send a list of suggested actions with all the subjects currently existing in the model",
+      "type": "object",
+      "required": [
+        "$kind"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^\\$": {
+          "title": "Tooling property",
+          "description": "Open ended property for tooling."
+        }
+      },
+      "properties": {
+        "$kind": {
+          "title": "Kind of dialog object",
+          "description": "Defines the valid properties for the component you are configuring (from a dialog .schema file)",
+          "type": "string",
+          "pattern": "^[a-zA-Z][a-zA-Z0-9.]*$",
+          "const": "SubjectSuggestions"
+        },
+        "$designer": {
+          "title": "Designer information",
+          "type": "object",
+          "description": "Extra information for the Bot Framework Composer."
+        }
+      }
     },
     "valueExpression": {
       "$role": "expression",

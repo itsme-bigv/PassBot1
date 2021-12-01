@@ -17,33 +17,27 @@
       },
       "actions": [
         {
-          "$kind": "Microsoft.ConfirmInput",
+          "$kind": "Microsoft.TextInput",
           "$designer": {
-            "id": "Ikl0NO"
+            "id": "QeFQuc"
           },
-          "defaultLocale": "en-us",
           "disabled": false,
           "maxTurnCount": 3,
           "alwaysPrompt": false,
           "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_QeFQuc()}",
           "unrecognizedPrompt": "",
           "invalidPrompt": "",
-          "choiceOptions": {
-            "includeNumbers": true,
-            "inlineOrMore": ", or ",
-            "inlineOr": " or ",
-            "inlineSeparator": ", "
-          },
-          "prompt": "${ConfirmInput_Prompt_Ikl0NO()}",
-          "property": "user.wishToCreate",
-          "style": "suggestedAction"
+          "defaultValueResponse": "",
+          "property": "user.modelName"
         },
         {
           "$kind": "CreateModelDialog",
           "$designer": {
-            "id": "zTZqjF"
+            "id": "nalV87"
           },
-          "wishToCreate": "=user.wishToCreate"
+          "wishToCreate": true,
+          "modelName": "=user.modelName"
         },
         {
           "$kind": "Microsoft.SendActivity",
@@ -53,12 +47,23 @@
           "activity": "${SendActivity_eq8Fu0()}"
         },
         {
+          "$kind": "Microsoft.DeleteProperties",
+          "$designer": {
+            "id": "8twk3i"
+          },
+          "properties": [
+            "user.choice",
+            "user.modification",
+            "user.subchoice"
+          ]
+        },
+        {
           "$kind": "Microsoft.BeginDialog",
           "$designer": {
-            "id": "hYXSwc"
+            "id": "6SpXto"
           },
           "activityProcessed": true,
-          "dialog": "PassBot1"
+          "dialog": "NextSteps"
         }
       ]
     }

@@ -8,6 +8,13 @@
     }
   },
   "profiles": {
+    "BotProject": {
+      "commandName": "Project",
+      "applicationUrl": "http://localhost:3978",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
@@ -15,10 +22,9 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "BotProject": {
+    "PassBot1": {
       "commandName": "Project",
-      "launchBrowser": true,
-      "applicationUrl": "http://localhost:3978",
+      "applicationUrl": "http://localhost:3417",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

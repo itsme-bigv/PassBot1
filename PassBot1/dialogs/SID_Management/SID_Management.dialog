@@ -15,10 +15,142 @@
         "description": "",
         "id": "nSybFm"
       },
-      "actions": []
+      "actions": [
+        {
+          "$kind": "SubjectSuggestions",
+          "$designer": {
+            "id": "zQC0r8"
+          }
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "VZi87g"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "prompt": "${TextInput_Prompt_VZi87g()}",
+          "property": "user.sendingSubject"
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "EuWQDG"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_EuWQDG()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "user.receivingSubject"
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "ot31wU"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_ot31wU()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "user.messageTitle"
+        },
+        {
+          "$kind": "CreateMessageExchange",
+          "$designer": {
+            "id": "7ByC3C"
+          },
+          "sendingSubject": "user.sendingSubject",
+          "receivingSubject": "user.receivingSubject",
+          "messageTitle": "user.messageTitle"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "zlGQd4"
+          },
+          "activity": "${SendActivity_zlGQd4()}"
+        },
+        {
+          "$kind": "Microsoft.DeleteProperties",
+          "$designer": {
+            "id": "rgXmFl"
+          },
+          "properties": [
+            "user.sendingSubject",
+            "user.receivingSubject",
+            "user.messageTitle",
+            "user.choice",
+            "user.modification"
+          ]
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "HkdYcz"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_HkdYcz()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "turn.moreMessages"
+        },
+        {
+          "$kind": "Microsoft.SwitchCondition",
+          "$designer": {
+            "id": "SF2wxy"
+          },
+          "condition": "turn.moreMessages",
+          "cases": [
+            {
+              "value": "yes",
+              "actions": [
+                {
+                  "$kind": "Microsoft.RepeatDialog",
+                  "$designer": {
+                    "id": "TUI8T9"
+                  },
+                  "activityProcessed": true
+                }
+              ]
+            },
+            {
+              "value": "no",
+              "actions": []
+            }
+          ],
+          "default": []
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "KqCzvB"
+          },
+          "activityProcessed": true,
+          "dialog": "NextSteps"
+        }
+      ]
     }
   ],
   "generator": "SID_Management.lg",
-  "recognizer": "SID_Management.lu.qna",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": []
+  },
   "id": "SID_Management"
 }

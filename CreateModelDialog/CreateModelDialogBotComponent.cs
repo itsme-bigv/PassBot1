@@ -16,6 +16,8 @@ namespace CreateModelDialog
             services.AddSingleton<DeclarativeType>(sp => new DeclarativeType<CreateMessageExchange>(CreateMessageExchange.Kind));
             services.AddSingleton<DeclarativeType>(sp => new DeclarativeType<CreateSubject>(CreateSubject.Kind));
             services.AddSingleton<DeclarativeType>(sp => new DeclarativeType<ExportModel>(ExportModel.Kind));
+            services.AddSingleton<DeclarativeType>(sp => new DeclarativeType<SubjectSuggestions>(SubjectSuggestions.Kind));
+            services.AddSingleton<DeclarativeType>(sp => new DeclarativeType<SubjectSuggestionComponent>(SubjectSuggestionComponent.Kind));
         }
     }
 }

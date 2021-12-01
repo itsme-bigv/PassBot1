@@ -6,7 +6,7 @@
 ]
 
 # SendActivity_Greeting_text()
-- Hi, my name is Albert, your go-to digital assistant for creating PASS Process Models. Click on one of the cards to get started!
+- Hi, my name is Albert, your go-to digital assistant for working with PASS Process Models. Click on one of the cards to get started!
 # SendActivity_DidNotUnderstand()
 [Activity
     Text = ${SendActivity_DidNotUnderstand_text()}

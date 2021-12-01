@@ -23,11 +23,16 @@
 
 	<ItemGroup>
 		<PackageReference Include="AdaptiveExpressions" Version="4.13.3" />
-		<PackageReference Include="alps.net_api" Version="2.1.0" />
+		<PackageReference Include="alps.net_api" Version="2.2.2" />
 		<PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="3.0.5" />
 		<PackageReference Include="Microsoft.Bot.Builder.Dialogs" Version="4.13.3" />
 		<PackageReference Include="Microsoft.Bot.Builder.Dialogs.Declarative" Version="4.13.3" />
 		<PackageReference Include="Microsoft.Bot.Builder.Dialogs.Adaptive.Runtime" Version="4.13.3" />
 	</ItemGroup>
+
+	  <ItemGroup>
+    <Folder Include="Actions\" />
+    <Folder Include="Schemas\" />
+  </ItemGroup>
 
 </Project>

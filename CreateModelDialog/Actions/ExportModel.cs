@@ -3,10 +3,9 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using AdaptiveExpressions.Properties;
+using alps.net_api.parsing;
 using Microsoft.Bot.Builder.Dialogs;
 using Newtonsoft.Json;
-using alps.net_api;
-
 
 namespace CreateModelDialog
 {
@@ -31,14 +30,13 @@ namespace CreateModelDialog
         {
 
             dc.State.TryGetValue("user", out Object user);
-            ((System.Collections.Generic.Dictionary<string, object>)user).TryGetValue("fileName", out Object filename);
+            ((System.Collections.Generic.Dictionary<string, object>)user).TryGetValue("modelName", out Object filename);
 
             ModelManagement management = ModelManagement.getInstance();
-     
+            
+            PASSReaderWriter graph = PASSReaderWriter.getInstance();
 
-
-                OwlGraph graph = new OwlGraph();
-                graph.ExportModel(management.Model, filename.ToString());
+            graph.exportModel(management.Model, filename.ToString());
             
 
             //Create Model and save it to state // useless in this class

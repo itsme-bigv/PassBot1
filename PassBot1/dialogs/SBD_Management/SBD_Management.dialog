@@ -19,6 +19,9 @@
     }
   ],
   "generator": "SBD_Management.lg",
-  "recognizer": "SBD_Management.lu.qna",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": []
+  },
   "id": "SBD_Management"
 }

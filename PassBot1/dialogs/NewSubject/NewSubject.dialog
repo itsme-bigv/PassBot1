@@ -29,7 +29,8 @@
           "invalidPrompt": "",
           "defaultValueResponse": "",
           "prompt": "${TextInput_Prompt_FZ7QSw()}",
-          "property": "user.subjectName"
+          "property": "user.subjectName",
+          "outputFormat": "=trim(this.value)"
         },
         {
           "$kind": "Microsoft.TextInput",
@@ -42,7 +43,6 @@
           "allowInterruptions": false,
           "prompt": "${TextInput_Prompt_hdqOyR()}",
           "unrecognizedPrompt": "",
-          "invalidPrompt": "",
           "defaultValueResponse": "",
           "property": "user.subjectType"
         },
@@ -69,8 +69,64 @@
           "properties": [
             "user.subjectType",
             "user.subjectName",
-            "user.submod"
+            "user.submod",
+            "user.choice",
+            "user.modification",
+            "user.subchoice"
           ]
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "cE2dFK"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_cE2dFK()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "user.moreSubjects"
+        },
+        {
+          "$kind": "Microsoft.SwitchCondition",
+          "$designer": {
+            "id": "PUgJJg"
+          },
+          "condition": "user.moreSubjects",
+          "cases": [
+            {
+              "value": "yes",
+              "actions": [
+                {
+                  "$kind": "Microsoft.DeleteProperty",
+                  "$designer": {
+                    "id": "mP71ce"
+                  },
+                  "property": "user.moreSubjects"
+                },
+                {
+                  "$kind": "Microsoft.RepeatDialog",
+                  "$designer": {
+                    "id": "1naqJW"
+                  },
+                  "activityProcessed": true
+                }
+              ]
+            },
+            {
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.DeleteProperty",
+          "$designer": {
+            "id": "ABxJBP"
+          },
+          "property": "user.moreSubjects"
         },
         {
           "$kind": "Microsoft.BeginDialog",
@@ -78,12 +134,15 @@
             "id": "o3xTmS"
           },
           "activityProcessed": true,
-          "dialog": "PassBot1"
+          "dialog": "NextSteps"
         }
       ]
     }
   ],
   "generator": "NewSubject.lg",
-  "recognizer": "NewSubject.lu.qna",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": []
+  },
   "id": "NewSubject"
 }

@@ -1,0 +1,176 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "pRYDcz",
+    "name": "NextSteps",
+    "comment": "Giving directions between each modelling step\n"
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "B5skjC"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "keipoR"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "prompt": "${TextInput_Prompt_keipoR()}",
+          "property": "user.choice"
+        },
+        {
+          "$kind": "Microsoft.SwitchCondition",
+          "$designer": {
+            "id": "5Sfnn2"
+          },
+          "condition": "user.choice",
+          "cases": [
+            {
+              "value": "Create a new model from scratch",
+              "actions": [
+                {
+                  "$kind": "Microsoft.BeginDialog",
+                  "$designer": {
+                    "id": "iVTZla"
+                  },
+                  "activityProcessed": true,
+                  "dialog": "NewModel",
+                  "resultProperty": "dialog.model"
+                }
+              ]
+            },
+            {
+              "value": "Modifiy existing model",
+              "actions": [
+                {
+                  "$kind": "Microsoft.TextInput",
+                  "$designer": {
+                    "id": "FNdP6T"
+                  },
+                  "disabled": false,
+                  "maxTurnCount": 3,
+                  "alwaysPrompt": false,
+                  "allowInterruptions": false,
+                  "unrecognizedPrompt": "",
+                  "invalidPrompt": "",
+                  "defaultValueResponse": "",
+                  "prompt": "${TextInput_Prompt_FNdP6T()}",
+                  "property": "user.modification"
+                },
+                {
+                  "$kind": "Microsoft.SwitchCondition",
+                  "$designer": {
+                    "id": "j1n6Jh"
+                  },
+                  "condition": "user.modification",
+                  "cases": [
+                    {
+                      "value": "Add a subject",
+                      "actions": [
+                        {
+                          "$kind": "Microsoft.BeginDialog",
+                          "$designer": {
+                            "id": "engJa1"
+                          },
+                          "activityProcessed": true,
+                          "dialog": "NewSubject"
+                        }
+                      ]
+                    },
+                    {
+                      "value": "Add messages",
+                      "actions": [
+                        {
+                          "$kind": "Microsoft.BeginDialog",
+                          "$designer": {
+                            "id": "mWijwx"
+                          },
+                          "activityProcessed": true,
+                          "dialog": "SID_Management"
+                        }
+                      ]
+                    },
+                    {
+                      "value": "Add states to a subject",
+                      "actions": [
+                        {
+                          "$kind": "Microsoft.BeginDialog",
+                          "$designer": {
+                            "id": "quTJgh"
+                          },
+                          "activityProcessed": true,
+                          "dialog": "SBD_Management"
+                        }
+                      ]
+                    },
+                    {
+                      "value": "Delete a subject"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "value": "Export model",
+              "actions": [
+                {
+                  "$kind": "ExportModel",
+                  "$designer": {
+                    "id": "NP0Zza"
+                  },
+                  "FileName": "=user.modelName"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "1NjTCG"
+                  },
+                  "activity": "${SendActivity_1NjTCG()}"
+                }
+              ]
+            }
+          ],
+          "default": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "i682Oz"
+              },
+              "activity": "${SendActivity_i682Oz()}"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.DeleteProperties",
+          "$designer": {
+            "id": "7rvACq"
+          },
+          "properties": [
+            "user.choice",
+            "user.modification",
+            "user.subchoice"
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "NextSteps.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": []
+  },
+  "id": "NextSteps"
+}

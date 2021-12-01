@@ -8,7 +8,7 @@
 ]
 
 # TextInput_Prompt_hdqOyR_text()
-- What type of subject is it?
+- What type of subject is ${user.subjectName}?
 # TextInput_Prompt_hdqOyR()
 [Activity
     Text = ${TextInput_Prompt_hdqOyR_text()}
@@ -21,3 +21,12 @@
 [Activity
     Text = ${SendActivity_7OiuNs_text()}
 ]
+
+# TextInput_Prompt_cE2dFK()
+[Activity
+    Text = ${TextInput_Prompt_cE2dFK_text()}
+    SuggestedActions = yes | no
+]
+
+# TextInput_Prompt_cE2dFK_text()
+- Do you want to add another subject?

@@ -1,16 +1,16 @@
 [import](common.lg)
 
-# ConfirmInput_Prompt_Ikl0NO()
-[Activity
-    Text = ${ConfirmInput_Prompt_Ikl0NO_text()}
-]
-
 # SendActivity_eq8Fu0()
 [Activity
     Text = ${SendActivity_eq8Fu0_text()}
 ]
 
 # SendActivity_eq8Fu0_text()
-- Your model has been created. Enter "nextSteps" to proceed.
-# ConfirmInput_Prompt_Ikl0NO_text()
-- Do you want to create a new Process Model?
+- ${user.modelName} has been created.
+# TextInput_Prompt_QeFQuc()
+[Activity
+    Text = ${TextInput_Prompt_QeFQuc_text()}
+]
+
+# TextInput_Prompt_QeFQuc_text()
+- Please give the model a name
