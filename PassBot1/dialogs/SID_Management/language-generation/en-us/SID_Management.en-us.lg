@@ -1,33 +1,5 @@
 [import](common.lg)
 
-# TextInput_Prompt_VZi87g()
-[Activity
-    Text = ${TextInput_Prompt_VZi87g_text()}
-]
-
-# TextInput_Prompt_VZi87g_text()
-- Which subject is sending the message?
-# TextInput_Prompt_EuWQDG()
-[Activity
-    Text = ${TextInput_Prompt_EuWQDG_text()}
-]
-
-# TextInput_Prompt_EuWQDG_text()
-- Which subject is receiving the message?
-# TextInput_Prompt_ot31wU()
-[Activity
-    Text = ${TextInput_Prompt_ot31wU_text()}
-]
-
-# TextInput_Prompt_ot31wU_text()
-- whats the message
-# SendActivity_zlGQd4()
-[Activity
-    Text = ${SendActivity_zlGQd4_text()}
-]
-
-# SendActivity_zlGQd4_text()
-- ${user.receivingSubject} and ${user.sendingSubject} are exchanging this message: ${user.messageTitle}
 # TextInput_Prompt_HkdYcz()
 [Activity
     Text = ${TextInput_Prompt_HkdYcz_text()}

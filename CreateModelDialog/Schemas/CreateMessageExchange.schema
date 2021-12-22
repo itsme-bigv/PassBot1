@@ -2,7 +2,11 @@
   "$schema": "https://schemas.botframework.com/schemas/component/v1.0/component.schema",
   "$role": "implements(Microsoft.IDialog)",
   "title": "CreateMessageExchange",
-  "description": "This will return a message exchange between two subjects",
+  "description": "This will return a message exchange between two subjects through a waterfall dialog with these steps:
+                getSenderAsync,
+                getReceiverAsync,
+                getMessageNameAsync,
+                summaryStepAsync,",
   "type": "object",
   "additionalProperties": false,
   "properties": {

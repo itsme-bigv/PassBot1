@@ -24,7 +24,8 @@ namespace CreateModelDialog.Actions
 
         public override async Task<DialogTurnResult> BeginDialogAsync(DialogContext dc, object options = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await dc.BeginDialogAsync(nameof(BehaviorEditingWaterfallComponent));
+            await dc.BeginDialogAsync(nameof(BehaviorEditingComponent),null,cancellationToken);
+            return await dc.EndDialogAsync(cancellationToken:cancellationToken);
         }
     }
 }

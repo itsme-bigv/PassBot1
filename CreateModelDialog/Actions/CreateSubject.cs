@@ -40,14 +40,16 @@ namespace CreateModelDialog.Actions
             dc.State.TryGetValue("user", out Object user);
             ((System.Collections.Generic.Dictionary<string, object>)user).TryGetValue("subjectType", out Object subjecttype);
             ((System.Collections.Generic.Dictionary<string, object>)user).TryGetValue("subjectName", out Object subjectname);
+
+            this.Subject = null;
             
-      
             if (subjecttype.ToString() == "Interface Subject")
             {
                  this.Subject = new InterfaceSubject(layer, subjectname.ToString());
             }
             else if (subjecttype.ToString() == "Fully Specified Subject")
-            { 
+            {
+                this.Subject = new FullySpecifiedSubject(layer, subjectname.ToString());
                 //FullySpecifiedSubject sub = new FullySpecifiedSubject(layer, subjectname.ToString());
             }
             else if (subjecttype.ToString() == "Multi Subject")
@@ -60,9 +62,14 @@ namespace CreateModelDialog.Actions
             //Create Subject and save it to state
 
             management.getSubjectCollection();
-            management.subjectCollection.Add((string)subjectname, Subject);
-
-                return dc.EndDialogAsync(result: Subject, cancellationToken: cancellationToken);
+            string nameToAdd = (string)subjectname;
+            if(management.subjectCollection.TryAdd(nameToAdd, Subject)) { }
+            else
+            {
+                nameToAdd = nameToAdd + "(1)";
+                management.subjectCollection.Add(nameToAdd, Subject);
+            }
+            return dc.EndDialogAsync(result: Subject, cancellationToken: cancellationToken);
         }
     }
 }

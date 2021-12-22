@@ -17,10 +17,11 @@
       },
       "actions": [
         {
-          "$kind": "Microsoft.TextInput",
+          "$kind": "Microsoft.ChoiceInput",
           "$designer": {
-            "id": "keipoR"
+            "id": "2dBKJb"
           },
+          "defaultLocale": "en-us",
           "disabled": false,
           "maxTurnCount": 3,
           "alwaysPrompt": false,
@@ -28,7 +29,21 @@
           "unrecognizedPrompt": "",
           "invalidPrompt": "",
           "defaultValueResponse": "",
-          "prompt": "${TextInput_Prompt_keipoR()}",
+          "prompt": "${ChoiceInput_Prompt_2dBKJb()}",
+          "choiceOptions": {
+            "includeNumbers": true,
+            "inlineOrMore": ", or ",
+            "inlineOr": " or ",
+            "inlineSeparator": ", "
+          },
+          "choices": [
+            "Edit existing model",
+            "Get Information on existing model",
+            "Get general Information on Subject-Oriented Process Modelling",
+            "Export model",
+            "Create a new model from scratch"
+          ],
+          "style": "heroCard",
           "property": "user.choice"
         },
         {
@@ -53,13 +68,14 @@
               ]
             },
             {
-              "value": "Modifiy existing model",
+              "value": "Edit existing model",
               "actions": [
                 {
-                  "$kind": "Microsoft.TextInput",
+                  "$kind": "Microsoft.ChoiceInput",
                   "$designer": {
-                    "id": "FNdP6T"
+                    "id": "W14YXt"
                   },
+                  "defaultLocale": "en-us",
                   "disabled": false,
                   "maxTurnCount": 3,
                   "alwaysPrompt": false,
@@ -67,8 +83,18 @@
                   "unrecognizedPrompt": "",
                   "invalidPrompt": "",
                   "defaultValueResponse": "",
-                  "prompt": "${TextInput_Prompt_FNdP6T()}",
-                  "property": "user.modification"
+                  "choiceOptions": {
+                    "includeNumbers": true
+                  },
+                  "property": "user.modification",
+                  "style": "heroCard",
+                  "choices": [
+                    "Add a subject",
+                    "Add messages",
+                    "Edit subject behavior",
+                    "Delete a subject"
+                  ],
+                  "prompt": "${ChoiceInput_Prompt_W14YXt()}"
                 },
                 {
                   "$kind": "Microsoft.SwitchCondition",
@@ -104,7 +130,7 @@
                       ]
                     },
                     {
-                      "value": "Add states to a subject",
+                      "value": "Edit subject behavior",
                       "actions": [
                         {
                           "$kind": "Microsoft.BeginDialog",

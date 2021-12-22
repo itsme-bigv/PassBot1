@@ -6,7 +6,7 @@
 ]
 
 # SendActivity_eq8Fu0_text()
-- ${user.modelName} has been created.
+- ${user.modelName} has been created. The base URI is http://www.imi.kit.edu/${user.modelName} 
 # TextInput_Prompt_QeFQuc()
 [Activity
     Text = ${TextInput_Prompt_QeFQuc_text()}

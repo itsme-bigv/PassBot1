@@ -18,6 +18,12 @@ namespace CreateModelDialog
             services.AddSingleton<DeclarativeType>(sp => new DeclarativeType<ExportModel>(ExportModel.Kind));
             services.AddSingleton<DeclarativeType>(sp => new DeclarativeType<SubjectSuggestions>(SubjectSuggestions.Kind));
             services.AddSingleton<DeclarativeType>(sp => new DeclarativeType<SubjectSuggestionComponent>(SubjectSuggestionComponent.Kind));
+            services.AddSingleton<DeclarativeType>(sp => new DeclarativeType<CreateMessageExchangeComponent>(CreateMessageExchangeComponent.Kind));
+            services.AddSingleton<DeclarativeType>(sp => new DeclarativeType<BehaviorEditing>(BehaviorEditing.Kind));
+            services.AddSingleton<DeclarativeType>(sp => new DeclarativeType<BehaviorEditingComponent>(BehaviorEditingComponent.Kind));
+            services.AddSingleton<DeclarativeType>(sp => new DeclarativeType<AddStatesComponent>(AddStatesComponent.Kind));
+            services.AddSingleton<DeclarativeType>(sp => new DeclarativeType<InterruptionDialog>(InterruptionDialog.Kind));
+
         }
     }
 }

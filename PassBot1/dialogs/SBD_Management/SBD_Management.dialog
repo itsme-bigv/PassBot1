@@ -15,7 +15,22 @@
         "description": "",
         "id": "PlIvA6"
       },
-      "actions": []
+      "actions": [
+        {
+          "$kind": "BehaviorEditing",
+          "$designer": {
+            "id": "wQz2S4"
+          }
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "kyFxpb"
+          },
+          "activityProcessed": true,
+          "dialog": "NextSteps"
+        }
+      ]
     }
   ],
   "generator": "SBD_Management.lg",

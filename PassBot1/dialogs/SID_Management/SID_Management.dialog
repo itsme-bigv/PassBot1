@@ -17,56 +17,6 @@
       },
       "actions": [
         {
-          "$kind": "SubjectSuggestions",
-          "$designer": {
-            "id": "zQC0r8"
-          }
-        },
-        {
-          "$kind": "Microsoft.TextInput",
-          "$designer": {
-            "id": "VZi87g"
-          },
-          "disabled": false,
-          "maxTurnCount": 3,
-          "alwaysPrompt": false,
-          "allowInterruptions": false,
-          "unrecognizedPrompt": "",
-          "invalidPrompt": "",
-          "prompt": "${TextInput_Prompt_VZi87g()}",
-          "property": "user.sendingSubject"
-        },
-        {
-          "$kind": "Microsoft.TextInput",
-          "$designer": {
-            "id": "EuWQDG"
-          },
-          "disabled": false,
-          "maxTurnCount": 3,
-          "alwaysPrompt": false,
-          "allowInterruptions": false,
-          "prompt": "${TextInput_Prompt_EuWQDG()}",
-          "unrecognizedPrompt": "",
-          "invalidPrompt": "",
-          "defaultValueResponse": "",
-          "property": "user.receivingSubject"
-        },
-        {
-          "$kind": "Microsoft.TextInput",
-          "$designer": {
-            "id": "ot31wU"
-          },
-          "disabled": false,
-          "maxTurnCount": 3,
-          "alwaysPrompt": false,
-          "allowInterruptions": false,
-          "prompt": "${TextInput_Prompt_ot31wU()}",
-          "unrecognizedPrompt": "",
-          "invalidPrompt": "",
-          "defaultValueResponse": "",
-          "property": "user.messageTitle"
-        },
-        {
           "$kind": "CreateMessageExchange",
           "$designer": {
             "id": "7ByC3C"
@@ -74,13 +24,6 @@
           "sendingSubject": "user.sendingSubject",
           "receivingSubject": "user.receivingSubject",
           "messageTitle": "user.messageTitle"
-        },
-        {
-          "$kind": "Microsoft.SendActivity",
-          "$designer": {
-            "id": "zlGQd4"
-          },
-          "activity": "${SendActivity_zlGQd4()}"
         },
         {
           "$kind": "Microsoft.DeleteProperties",

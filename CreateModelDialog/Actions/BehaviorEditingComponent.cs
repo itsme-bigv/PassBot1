@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using AdaptiveExpressions.Properties;
+using alps.net_api.StandardPASS;
+using alps.net_api.StandardPASS.BehaviorDescribingComponents;
 using alps.net_api.StandardPASS.InteractionDescribingComponents;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
 using Newtonsoft.Json;
-using CreateModelDialog;
-using alps.net_api.StandardPASS.BehaviorDescribingComponents;
 
 namespace CreateModelDialog.Actions
 {
-    public class BehaviorEditingWaterfallComponent : ComponentDialog
+    public class BehaviorEditingComponent : ComponentDialog
     {
 
         [JsonProperty("$kind")]
@@ -24,14 +22,16 @@ namespace CreateModelDialog.Actions
         ModelManagement management = ModelManagement.getInstance();
         IDictionary<string, ISubject> subjectCollection;
         IFullySpecifiedSubject subject;
-        IState doState;
+        IState addedState;
+        ISubjectBehavior defaultBehavior;
 
         bool containsBehavior = false;
-        bool subjectSet=false;
+        bool subjectSet;
+        WaterfallStepContext backUpContext;
 
         [JsonConstructor]
-        public BehaviorEditingWaterfallComponent([CallerFilePath] string sourceFilePath = "", [CallerLineNumber] int sourceLineNumber = 0)
-        : base(nameof(BehaviorEditingWaterfallComponent))
+        public BehaviorEditingComponent([CallerFilePath] string sourceFilePath = "", [CallerLineNumber] int sourceLineNumber = 0)
+        : base(nameof(BehaviorEditingComponent))
         {
             RegisterSourceLocation(sourceFilePath, sourceLineNumber);
 
@@ -40,32 +40,38 @@ namespace CreateModelDialog.Actions
                 ChooseSubjectAsync,
                 SubjectCheck,
                 ChooseEntryPointAsync,
-
-
+                ContinueDescribingAsync,
+                TransitioningAsync,
+                MoreStatesAsync,
+                EndOrReRunAsync,
             };
 
             AddDialog(new WaterfallDialog(nameof(WaterfallDialog), waterfallSteps));
             AddDialog(new SubjectSuggestions());
             AddDialog(new SubjectSuggestionComponent("Fully specified subjects","",0));
             AddDialog(new TextPrompt(nameof(TextPrompt)));
+            AddDialog(new ConfirmPrompt(nameof(ConfirmPrompt)));
+            AddDialog(new AddStatesComponent());
+            AddDialog(new AddTransitionsComponent("Coming from BehaviorEditing","",0));
+            AddDialog(new InterruptionDialog());
+            AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
 
             InitialDialogId = nameof(WaterfallDialog);
 
             subjectCollection = management.getSubjectCollection();
-
         }
         private async Task<DialogTurnResult> ChooseSubjectAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
             await stepContext.Context.SendActivityAsync("Which subject's behavior do you want to edit?");
 
-            //TODO: can also select subjects that dont specify any behavior. how to fix? Can I call SubjectSuggestionComponent directly?
-            return await stepContext.BeginDialogAsync(nameof(SubjectSuggestionComponent));
+            return await stepContext.BeginDialogAsync(nameof(SubjectSuggestionComponent), null, cancellationToken);
         }
         
         private async Task<DialogTurnResult> SubjectCheck(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
             string s = "subjectToBeEdited";
             stepContext.Values[s] = ((FoundChoice)stepContext.Result).Value;
+            subjectSet = false;
 
             foreach (IFullySpecifiedSubject sub in management.subjectCollection.Values.OfType<IFullySpecifiedSubject>())
             {
@@ -79,20 +85,22 @@ namespace CreateModelDialog.Actions
             if (subjectSet)
             {
                 await stepContext.Context.SendActivityAsync($"let's talk about {(string)stepContext.Values[s]}'s behavior");
-                return await stepContext.ContinueDialogAsync(cancellationToken);
             }
+
             else
             {
                 await stepContext.Context.SendActivityAsync($"Cant't find {(string)stepContext.Values[s]}. Please try again with another subject. [skipping the rest of this dialog]");
-                return await stepContext.EndDialogAsync();
+                await stepContext.EndDialogAsync();
             }
-            
+            //this ContinueDialogAsync method works properly only on the highest "klammer" of a waterfall step 
+            return await stepContext.NextAsync(null,cancellationToken);
         }
 
         private async Task<DialogTurnResult> ChooseEntryPointAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            var defaultBehavior = subject.getSubjectBaseBehavior();
-            
+            defaultBehavior = subject.getSubjectBaseBehavior();
+            stepContext.Values["behavior"] = defaultBehavior;
+
             if (defaultBehavior.getBehaviorDescribingComponents().Any())
             {
                 containsBehavior = true;
@@ -102,40 +110,96 @@ namespace CreateModelDialog.Actions
                 containsBehavior = false;
             }
 
-            if (containsBehavior)
+            if (!containsBehavior)
             {
-                
+                await stepContext.Context.SendActivityAsync($"{(string)stepContext.Values["subjectToBeEdited"]} does not specify any behavior yet. What's the first action?");
+
+            }
+
+            return await stepContext.BeginDialogAsync(nameof(AddStatesComponent), defaultBehavior, cancellationToken);
+        }
+
+        private async Task<DialogTurnResult> ContinueDescribingAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        {
+            //use result of child dialog (AddStatesComponent)
+
+            if (stepContext.Result is IState addState)
+            {
+                addedState = addState;
+            }
+            string msg;
+            if (!containsBehavior)
+            {
+                msg = "This was the first state. do you want to make it start state?";
             }
             else
             {
-                await stepContext.Context.SendActivityAsync($"{(string)stepContext.Values["subjectToBeEdited"]} does not specify any behavior yet. What does it do first?");
-
-                doState = new DoState(defaultBehavior);
-
-                await stepContext.Context.SendActivityAsync($"This was the first state. do you want to make it start state?");
-
-                //TODO: make it start state (same way to make end state)
-                doState.setIsStateType(IState.StateType.InitialStateOfBehavior);
+                msg = "Do you want to connect this state to a previously defined state?";
             }
-
-            //TODO: ask for state and inbound transition
-            await stepContext.Context.SendActivityAsync($"which is the preceeding state?");
-
-            //TODO: potential problems: (0) labels are not unique, but dictionary keys must be AND (1) getModelComponentLabels()[0] might be empty
-            //(0) if labels.TryAdd label ; else labels.Add ID
-            //(1) if Labels.size =0, use ComponentID
-            IList<IState> stateList = new List<IState>(defaultBehavior.getBehaviorDescribingComponents().Values.OfType<IState>());
-            IDictionary<string,IState> labels = new Dictionary<string,IState>();
-            foreach (IState state in stateList) labels.Add(state.getModelComponentLabels()[0],state);
-
-            if (doState is IDoState myDostate)
+            return await stepContext.PromptAsync(nameof(ConfirmPrompt), new PromptOptions
             {
-                ITransition transition = new DoTransition(defaultBehavior);
-                myDostate.addOutgoingTransition(transition);
-            }
+                Prompt = MessageFactory.Text(msg),
+                Choices = new[] { new Choice { Value = "yes" }, new Choice { Value = "no" } }.ToList()
+            });
+        }
 
-            
+        private async Task<DialogTurnResult> TransitioningAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        {
+            string[] option = new string[] { "exit",null };
+            if (stepContext.Result is bool choices)
+            {
+                if (!containsBehavior)
+                {
+                    if (choices)
+                    {
+                        //make it start state (same way to make end state)
+                        addedState.setIsStateType(IState.StateType.InitialStateOfBehavior);
+                    }
+                }
+                if (containsBehavior)
+                {
+                    if (choices)
+                    {
+                        option[0] = "state selection";
+                        option[1] = addedState.getModelComponentID();
+                    }
+                }
+            }
+            return await stepContext.BeginDialogAsync(nameof(AddTransitionsComponent), options: option, cancellationToken: cancellationToken);
+        }
+
+        private async Task<DialogTurnResult> MoreStatesAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        {
+            await stepContext.Context.SendActivityAsync(MessageFactory.Text("debugging reasons"));
+            backUpContext = stepContext;
+
+            PromptOptions promptOptions = new PromptOptions
+            {
+                Prompt = MessageFactory.Text("Do you want to tell me what the subject is doing next?"),
+                Choices = new[] { new Choice { Value = "yes" }, new Choice { Value = "no" } }.ToList(),
+                Style = ListStyle.HeroCard
+            };
+
+            return await stepContext.PromptAsync(nameof(ConfirmPrompt), promptOptions,cancellationToken);
+        }
+
+        private async Task<DialogTurnResult> EndOrReRunAsync(WaterfallStepContext stepContext,CancellationToken cancellationToken)
+        {
+            if (stepContext.Result is bool choices)
+            {
+                if (choices)
+                {
+                    //return await stepContext.ReplaceDialogAsync(nameof(BehaviorEditingComponent),null, cancellationToken);
+                }
+            }
+            //return await stepContext.NextAsync(null, cancellationToken);
+            //TODO how to not restart this dialog?
             return await stepContext.EndDialogAsync();
+        }
+
+        private async Task<DialogTurnResult> DefinetlyEndAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        {
+            return await stepContext.EndDialogAsync(null, cancellationToken: cancellationToken);
         }
     }
 }

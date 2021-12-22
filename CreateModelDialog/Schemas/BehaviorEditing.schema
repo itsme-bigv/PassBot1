@@ -2,7 +2,14 @@
   "$schema": "https://schemas.botframework.com/schemas/component/v1.0/component.schema",
   "$role": "implements(Microsoft.IDialog)",
   "title": "BehaviorEditing",
-  "description": "guide the user through the behavior editing process",
+  "description": "guide the user through the behavior editing process in a waterfall dialog with these steps:
+                ChooseSubjectAsync,
+                SubjectCheck,
+                ChooseEntryPointAsync,
+                ContinueDescribingAsync,
+                TransitioningAsync,
+                MoreStatesAsync,
+                EndOrReRunAsync",
   "type": "object",
   "additionalProperties": false,
   "properties": {    
