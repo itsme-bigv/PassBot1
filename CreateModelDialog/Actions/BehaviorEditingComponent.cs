@@ -194,10 +194,10 @@ namespace CreateModelDialog.Actions
             }
             //return await stepContext.NextAsync(null, cancellationToken);
             //TODO how to not restart this dialog?
-            return await stepContext.EndDialogAsync();
+            return await stepContext.EndDialogAsync(cancellationToken: cancellationToken);
         }
 
-        private async Task<DialogTurnResult> DefinetlyEndAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> DefinetelyEndAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
             return await stepContext.EndDialogAsync(null, cancellationToken: cancellationToken);
         }

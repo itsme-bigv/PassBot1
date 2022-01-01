@@ -13,7 +13,8 @@
       "$designer": {
         "name": "BeginDialog",
         "description": "",
-        "id": "B5skjC"
+        "id": "B5skjC",
+        "comment": ""
       },
       "actions": [
         {
@@ -24,11 +25,10 @@
           "defaultLocale": "en-us",
           "disabled": false,
           "maxTurnCount": 3,
-          "alwaysPrompt": false,
+          "alwaysPrompt": true,
           "allowInterruptions": false,
           "unrecognizedPrompt": "",
           "invalidPrompt": "",
-          "defaultValueResponse": "",
           "prompt": "${ChoiceInput_Prompt_2dBKJb()}",
           "choiceOptions": {
             "includeNumbers": true,
@@ -44,7 +44,10 @@
             "Create a new model from scratch"
           ],
           "style": "heroCard",
-          "property": "user.choice"
+          "property": "user.choice",
+          "recognizerOptions": {
+            "recognizeOrdinals": true
+          }
         },
         {
           "$kind": "Microsoft.SwitchCondition",
